@@ -12,17 +12,22 @@
         <Label HorizontalAlignment="Left" Margin="40,80,0,0" VerticalAlignment="Top">Billede (Sti):</Label>
 
         <Image x:Name="flowerImg" Stretch="Uniform" Source="assets/img/temp.png" HorizontalAlignment="Left" Height="100" Margin="150,120,0,0" VerticalAlignment="Top" Width="100" LostFocus="flowerImg_LostFocus"/>
+        <Label x:Name="imgMsg" HorizontalAlignment="Left" Margin="150,220,0,0" VerticalAlignment="Top"></Label>
+
 
         <Label HorizontalAlignment="Left" Margin="40,260,0,0" VerticalAlignment="Top">Produktionstid:</Label>
         <Label HorizontalAlignment="Left" Margin="40,300,0,0" VerticalAlignment="Top">Halveringstid:</Label>
         <Label HorizontalAlignment="Left" Margin="40,340,0,0" VerticalAlignment="Top">Størrelse:</Label>
-   
+
+
+        <Label x:Name="errorMsg" HorizontalAlignment="Left" Margin="150,360,0,0" VerticalAlignment="Top" Foreground="Red"></Label>
+
         <!--Text boxes now!!!-->
         <TextBox x:Name="tbLineName" HorizontalAlignment="Left" Margin="150,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" TextChanged="onChanged"/>
         <TextBox x:Name="tbLineImg" HorizontalAlignment="Left" Margin="150,85,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" TextChanged="onChanged"/>
-        <TextBox x:Name="tbLineProductTime" HorizontalAlignment="Left" Margin="150,265,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" TextChanged="onChanged"/>
-        <TextBox x:Name="tbHalfLife" HorizontalAlignment="Left" Margin="150,305,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" TextChanged="onChanged"/>
-        <TextBox x:Name="tbSize" HorizontalAlignment="Left" Margin="150,345,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" TextChanged="onChanged"/>
+        <TextBox x:Name="tbLineProductTime" HorizontalAlignment="Left" Margin="150,265,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" TextChanged="onChangedInt"/>
+        <TextBox x:Name="tbHalfLife" HorizontalAlignment="Left" Margin="150,305,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" TextChanged="onChangedInt"/>
+        <TextBox x:Name="tbSize" HorizontalAlignment="Left" Margin="150,345,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" TextChanged="onChangedInt"/>
         <Button x:Name="btnConfirmFlower" Content="OK" HorizontalAlignment="Left" Margin="325,385,0,0" VerticalAlignment="Top" Width="60" Height="25" IsDefault="True" Click="btnConfirmFlower_Click" IsEnabled="False"/>
         <Button x:Name="btnCancel" Content="Fortryd" HorizontalAlignment="Left" Margin="400,385,0,0" VerticalAlignment="Top" Width="60" Height="25" IsCancel="True"/>
 
