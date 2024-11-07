@@ -25,7 +25,19 @@ namespace TusindfrydWPF
 
         private void btnCreateSort_Click(object sender, RoutedEventArgs e)
         {
-
+            CreateFlowerSortDialog createWindow = new CreateFlowerSortDialog();
+            createWindow.ShowDialog();
+            if (createWindow.DialogResult == true)
+            {
+                if(createWindow.tbLineImg.Text != "") {
+                    FlowerSort flower = new FlowerSort(createWindow.tbLineName.Text, $"assets/img/{createWindow.tbLineImg.Text}", int.Parse(createWindow.tbLineProductTime.Text), int.Parse(createWindow.tbHalfLife.Text), int.Parse(createWindow.tbSize.Text));
+                    flowerSorts.Add(flower);
+                } else
+                {
+                    FlowerSort flower = new FlowerSort(createWindow.tbLineName.Text, int.Parse(createWindow.tbLineProductTime.Text), int.Parse(createWindow.tbHalfLife.Text), int.Parse(createWindow.tbSize.Text));
+                    flowerSorts.Add(flower);
+                }
+            }
         }
     }
 }
