@@ -53,35 +53,41 @@ namespace TusindfrydWPF
                 }
             }
 
-            
+
             // This is gonna be clumsy but whatevs, if it works.... it works.
-            try
+            if (tbHalfLife.Text != "")
             {
-                int.Parse(tbHalfLife.Text);
+                try
+                {
+                    int.Parse(tbHalfLife.Text);
+                }
+                catch
+                {
+                    errorMsg.Content = "Halveringstid er ikke sat til et heltal.";
+                }
             }
-            catch
+            if (tbLineProductTime.Text != "")
             {
-                errorMsg.Content = "Halveringstid er ikke sat til et heltal.";
+                try
+                {
+                    int.Parse(tbLineProductTime.Text);
+                }
+                catch
+                {
+                    errorMsg.Content = "Produktionstid er ikke sat til et heltal.";
+                }
             }
-
-            try
+            if (tbSize.Text != "")
             {
-                int.Parse(tbLineProductTime.Text);
+                try
+                {
+                    int.Parse(tbSize.Text);
+                }
+                catch
+                {
+                    errorMsg.Content = "Størrelse er ikke sat til et heltal.";
+                }
             }
-            catch
-            {
-                errorMsg.Content = "Produktionstid er ikke sat til et heltal.";
-            }
-
-            try
-            {
-                int.Parse(tbSize.Text);
-            }
-            catch
-            {
-                errorMsg.Content = "Størrelse er ikke sat til et heltal.";
-            }
-
         }
 
 
