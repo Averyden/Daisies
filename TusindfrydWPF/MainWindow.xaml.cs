@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Security;
+using System.Windows;
 using Daisies;
 
 namespace TusindfrydWPF
@@ -14,6 +15,12 @@ namespace TusindfrydWPF
         {
             InitializeComponent();
             flowerSorts = new List<FlowerSort>();
+        }
+
+        private void createFlowerSortFinal(string name, string path, int proTime, int HLX, int size)
+        {
+            FlowerSort sort = new FlowerSort(name, path, proTime, HLX, size);
+            
         }
 
         private void btnCreateSort_Click(object sender, RoutedEventArgs e)
