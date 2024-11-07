@@ -23,7 +23,7 @@
         <TextBox x:Name="tbLineProductTime" HorizontalAlignment="Left" Margin="150,265,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" TextChanged="onChanged"/>
         <TextBox x:Name="tbHalfLife" HorizontalAlignment="Left" Margin="150,305,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" TextChanged="onChanged"/>
         <TextBox x:Name="tbSize" HorizontalAlignment="Left" Margin="150,345,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" TextChanged="onChanged"/>
-        <Button x:Name="btnConfirmFlower" Content="OK" HorizontalAlignment="Left" Margin="325,385,0,0" VerticalAlignment="Top" Width="60" Height="25" IsDefault="True" Click="btnConfirmFlower_Click"/>
+        <Button x:Name="btnConfirmFlower" Content="OK" HorizontalAlignment="Left" Margin="325,385,0,0" VerticalAlignment="Top" Width="60" Height="25" IsDefault="True" Click="btnConfirmFlower_Click" IsEnabled="False"/>
         <Button x:Name="btnCancel" Content="Fortryd" HorizontalAlignment="Left" Margin="400,385,0,0" VerticalAlignment="Top" Width="60" Height="25" IsCancel="True"/>
 
     </Grid>
