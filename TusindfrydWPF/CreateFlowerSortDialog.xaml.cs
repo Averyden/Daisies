@@ -24,7 +24,7 @@ namespace TusindfrydWPF
                 btnConfirmFlower.IsEnabled = true;
             }
         }
-
+        
 
 
         private void btnConfirmFlower_Click(object sender, RoutedEventArgs e)
@@ -35,20 +35,27 @@ namespace TusindfrydWPF
         private void onChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             updateOKBtn();
-            Uri resourceUri = new Uri($"{tbLineImg.Text}", UriKind.Relative);
+
             try
             {
+                Uri resourceUri = new Uri($"assets/img/{tbLineImg.Text}", UriKind.Relative);
                 flowerImg.Source = new BitmapImage(resourceUri);
-            } catch
+               
+            }
+            catch (Exception ex)
             {
-                Uri fallbackUri = new Uri("assets/img/temp.png", UriKind.Relative);
+                Console.WriteLine("Image loading failed: " + ex.Message);
+
+
+                Uri fallbackUri = new Uri("assets/img/temp.png", UriKind.RelativeOrAbsolute);
                 flowerImg.Source = new BitmapImage(fallbackUri);
-            }   
+            }
         }
 
         private void flowerImg_LostFocus(object sender, RoutedEventArgs e)
         {
-            flowerImg.Focus();
+            Uri fallbackUri = new Uri("assets/img/temp.png", UriKind.Relative);
+            flowerImg.Source = new BitmapImage(fallbackUri);
         }
     }
 }
