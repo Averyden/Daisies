@@ -17,10 +17,11 @@ namespace TusindfrydWPF
 
         public void updateUI()
         {
-            if(tbHalfLife.Text == "" || tbLineName.Text == "" || tbLineProductTime.Text == "" || tbSize.Text == "")
+            if (tbHalfLife.Text == "" || tbLineName.Text == "" || tbLineProductTime.Text == "" || tbSize.Text == "")
             {
                 btnConfirmFlower.IsEnabled = false;
-            } else
+            }
+            else
             {
                 btnConfirmFlower.IsEnabled = true;
             }
@@ -30,13 +31,16 @@ namespace TusindfrydWPF
                 Uri fallbackUri = new Uri("assets/img/temp.png", UriKind.RelativeOrAbsolute);
                 flowerImg.Source = new BitmapImage(fallbackUri);
                 imgMsg.Content = "";
-            } else
+            }
+            else
             {
                 try
                 {
                     Uri resourceUri = new Uri($"assets/img/{tbLineImg.Text}", UriKind.Relative);
+                    BitmapImage jogn = new BitmapImage(resourceUri);
                     flowerImg.Source = new BitmapImage(resourceUri);
-                    imgMsg.Content = $"sucessfully loaded image: {resourceUri}";
+                    //imgMsg.Content = $"sucessfully loaded image: {resourceUri}";
+                    imgMsg.Content = jogn.ToString();
 
                 }
                 catch (Exception ex)
@@ -49,31 +53,49 @@ namespace TusindfrydWPF
                 }
             }
 
-            if (tbHalfLife.Text != "" || tbLineProductTime.Text != "" || tbSize.Text != "") { 
-                try
-                {
-                    int.Parse(tbHalfLife.Text);
-                    int.Parse(tbLineProductTime.Text);
-                    int.Parse(tbSize.Text);
-                }
-                catch {
-                    errorMsg.Content = "Produktionstid, halveringstid, eller størrelse er ikke et heltal.";
-                }
+            
+            // This is gonna be clumsy but whatevs, if it works.... it works.
+            try
+            {
+                int.Parse(tbHalfLife.Text);
             }
+            catch
+            {
+                errorMsg.Content = "Halveringstid er ikke sat til et heltal.";
+            }
+
+            try
+            {
+                int.Parse(tbLineProductTime.Text);
+            }
+            catch
+            {
+                errorMsg.Content = "Produktionstid er ikke sat til et heltal.";
+            }
+
+            try
+            {
+                int.Parse(tbSize.Text);
+            }
+            catch
+            {
+                errorMsg.Content = "Størrelse er ikke sat til et heltal.";
+            }
+
         }
-        
+
 
 
         private void btnConfirmFlower_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;  
+            this.DialogResult = true;
         }
 
         private void onChanged(object sender, TextChangedEventArgs e)
         {
             updateUI();
 
-            
+
         }
 
         private void flowerImg_LostFocus(object sender, RoutedEventArgs e)
