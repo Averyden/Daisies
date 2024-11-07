@@ -37,7 +37,13 @@ namespace TusindfrydWPF
                     FlowerSort flower = new FlowerSort(createWindow.tbLineName.Text, int.Parse(createWindow.tbLineProductTime.Text), int.Parse(createWindow.tbHalfLife.Text), int.Parse(createWindow.tbSize.Text));
                     flowerSorts.Add(flower);
                 }
+
+                foreach (var flower in flowerSorts)
+                {
+                    sortList.Text = $"{flower.Name}, {flower.PicturePath}, {flower.ProductionTime}, {flower.HalfLife}, {flower.Size}\n";
+                }
             }
         }
+
     }
 }
