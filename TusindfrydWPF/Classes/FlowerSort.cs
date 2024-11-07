@@ -22,5 +22,10 @@ namespace Daisies
             HalfLife = halfLife;
             Size = size;
         }
+
+        public FlowerSort(string name, int producTime, int halfLife, int size) : this(name, "", producTime, halfLife, size) 
+        { 
+
+        }
     }
 }
