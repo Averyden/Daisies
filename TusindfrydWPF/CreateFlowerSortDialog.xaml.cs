@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Windows.Controls;
+using System.Windows;
 using System.Windows.Media.Imaging;
 using Daisies;
 
@@ -14,7 +15,7 @@ namespace TusindfrydWPF
             InitializeComponent();
         }
 
-        public void updateOKBtn()
+        public void updateUI()
         {
             if(tbHalfLife.Text == "" || tbLineName.Text == "" || tbLineProductTime.Text == "" || tbSize.Text == "")
             {
@@ -24,27 +25,45 @@ namespace TusindfrydWPF
                 btnConfirmFlower.IsEnabled = true;
             }
         }
-        
 
+        public void updateErrorForInt()
+        {
+            try
+            {
+                int.Parse(tbHalfLife.Text);
+                int.Parse(tbLineProductTime.Text);
+                int.Parse(tbSize.Text);
+            }
+            catch
+            {
+                errorMsg.Content = "Produktionstid, halveringstid, eller størrelse er ikke et heltal.";
+            }
+        }
 
         private void btnConfirmFlower_Click(object sender, RoutedEventArgs e)
         {
-           
+            this.DialogResult = true;  
         }
 
-        private void onChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void onChangedInt(object sender, TextChangedEventArgs e)
         {
-            updateOKBtn();
+            updateErrorForInt();
+        }
+
+        private void onChanged(object sender, TextChangedEventArgs e)
+        {
+            updateUI();
 
             try
             {
                 Uri resourceUri = new Uri($"assets/img/{tbLineImg.Text}", UriKind.Relative);
                 flowerImg.Source = new BitmapImage(resourceUri);
+                imgMsg.Content = $"sucessfully loaded image: {resourceUri}";
                
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Image loading failed: " + ex.Message);
+                imgMsg.Content = $"Image loading failed: {ex.Message}";
 
 
                 Uri fallbackUri = new Uri("assets/img/temp.png", UriKind.RelativeOrAbsolute);
