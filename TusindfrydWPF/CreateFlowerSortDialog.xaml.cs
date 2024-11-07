@@ -15,16 +15,19 @@ namespace TusindfrydWPF
             InitializeComponent();
         }
 
-        public void updateUI()
+        public void AllFieldsFilled()
         {
-            if (tbHalfLife.Text == "" || tbLineName.Text == "" || tbLineProductTime.Text == "" || tbSize.Text == "")
-            {
-                btnConfirmFlower.IsEnabled = false;
-            }
-            else
+            if (!String.IsNullOrEmpty(tbHalfLife.Text)
+                && !String.IsNullOrEmpty(tbLineName.Text)
+                && !String.IsNullOrEmpty(tbLineProductTime.Text)
+                && !String.IsNullOrEmpty(tbSize.Text))
             {
                 btnConfirmFlower.IsEnabled = true;
             }
+        }
+
+        public void updateUI()
+        {
 
             if (tbLineImg.Text == "")
             {
@@ -33,7 +36,7 @@ namespace TusindfrydWPF
                 imgMsg.Content = "";
             }
             else
-            {
+            { // TODO: figure out how I can make it actually reach the fallback, using File.Exists is gonna rule out absolute paths and doesn't even work in this context with relative paths either.
                 try
                 {
                     Uri resourceUri = new Uri($"assets/img/{tbLineImg.Text}", UriKind.Relative);
@@ -99,7 +102,8 @@ namespace TusindfrydWPF
 
         private void onChanged(object sender, TextChangedEventArgs e)
         {
-            updateUI();
+            updateUI(); // Split up and remove later.
+            AllFieldsFilled();
 
 
         }
