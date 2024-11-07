@@ -10,6 +10,8 @@ namespace TusindfrydWPF
     /// </summary>
     public partial class CreateFlowerSortDialog : Window
     {
+
+        public FlowerSort flowerSort { get; set; }
         public CreateFlowerSortDialog()
         {
             InitializeComponent();
@@ -23,7 +25,7 @@ namespace TusindfrydWPF
                 && !String.IsNullOrEmpty(tbSize.Text))
             {
                 btnConfirmFlower.IsEnabled = true;
-            }
+            } 
         }
 
         public void updateUI()
@@ -97,7 +99,16 @@ namespace TusindfrydWPF
 
         private void btnConfirmFlower_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;
+            flowerSort = new FlowerSort();
+            flowerSort.Name = tbLineName.Text;
+            flowerSort.PicturePath = $"assets/img/{tbLineImg.Text}";
+            flowerSort.ProductionTime = int.Parse(tbLineProductTime.Text);
+            flowerSort.HalfLife = int.Parse(tbHalfLife.Text);
+            flowerSort.Size = int.Parse(tbSize.Text);
+
+
+            
+            DialogResult = true;
         }
 
         private void onChanged(object sender, TextChangedEventArgs e)

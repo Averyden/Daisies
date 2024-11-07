@@ -1,5 +1,6 @@
 ﻿using System.Security;
 using System.Windows;
+using System.Windows.Documents;
 using Daisies;
 
 namespace TusindfrydWPF
@@ -17,11 +18,7 @@ namespace TusindfrydWPF
             flowerSorts = new List<FlowerSort>();
         }
 
-        private void createFlowerSortFinal(string name, string path, int proTime, int HLX, int size)
-        {
-            FlowerSort sort = new FlowerSort(name, path, proTime, HLX, size);
-            
-        }
+
 
         private void btnCreateSort_Click(object sender, RoutedEventArgs e)
         {
@@ -29,18 +26,11 @@ namespace TusindfrydWPF
             createWindow.ShowDialog();
             if (createWindow.DialogResult == true)
             {
-                if(createWindow.tbLineImg.Text != "") {
-                    FlowerSort flower = new FlowerSort(createWindow.tbLineName.Text, $"assets/img/{createWindow.tbLineImg.Text}", int.Parse(createWindow.tbLineProductTime.Text), int.Parse(createWindow.tbHalfLife.Text), int.Parse(createWindow.tbSize.Text));
-                    flowerSorts.Add(flower);
-                } else
-                {
-                    FlowerSort flower = new FlowerSort(createWindow.tbLineName.Text, int.Parse(createWindow.tbLineProductTime.Text), int.Parse(createWindow.tbHalfLife.Text), int.Parse(createWindow.tbSize.Text));
-                    flowerSorts.Add(flower);
-                }
-
+                flowerSorts.Add(createWindow.flowerSort);
+                sortList.Text = string.Empty;
                 foreach (var flower in flowerSorts)
                 {
-                    sortList.Text = $"{flower.Name}, {flower.PicturePath}, {flower.ProductionTime}, {flower.HalfLife}, {flower.Size}\n";
+                    sortList.Text = $"{flower.Name}\n";
                 }
             }
         }
