@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TusindfrydWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="250" Width="300">
     <Grid>
+        <Label Content="Blomstersorter:&#xD;&#xA;" HorizontalAlignment="Left" Margin="35,28,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="35,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="127" Width="204" Background="LightGray"><Run Text="Ingen blomstersorter er til"/><Run Language="da-dk" Text="føjet"/><Run Text="."/></TextBlock>
+        <Button x:Name="btnCreateSort" Content="Opret Blomstersort" HorizontalAlignment="Left" Margin="84,204,0,0" VerticalAlignment="Top" Click="btnCreateSort_Click"/>
 
     </Grid>
 </Window>
