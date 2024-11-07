@@ -20,5 +20,10 @@ namespace TusindfrydWPF
         {
             InitializeComponent();
         }
+
+        private void btnCreateSort_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
