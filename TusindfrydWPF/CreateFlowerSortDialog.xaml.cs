@@ -25,6 +25,30 @@ namespace TusindfrydWPF
                 btnConfirmFlower.IsEnabled = true;
             }
 
+            if (tbLineImg.Text == "")
+            {
+                Uri fallbackUri = new Uri("assets/img/temp.png", UriKind.RelativeOrAbsolute);
+                flowerImg.Source = new BitmapImage(fallbackUri);
+                imgMsg.Content = "";
+            } else
+            {
+                try
+                {
+                    Uri resourceUri = new Uri($"assets/img/{tbLineImg.Text}", UriKind.Relative);
+                    flowerImg.Source = new BitmapImage(resourceUri);
+                    imgMsg.Content = $"sucessfully loaded image: {resourceUri}";
+
+                }
+                catch (Exception ex)
+                {
+                    imgMsg.Content = $"Image loading failed: {ex.Message}";
+
+
+                    Uri fallbackUri = new Uri("assets/img/temp.png", UriKind.RelativeOrAbsolute);
+                    flowerImg.Source = new BitmapImage(fallbackUri);
+                }
+            }
+
             if (tbHalfLife.Text != "" || tbLineProductTime.Text != "" || tbSize.Text != "") { 
                 try
                 {
@@ -49,21 +73,7 @@ namespace TusindfrydWPF
         {
             updateUI();
 
-            try
-            {
-                Uri resourceUri = new Uri($"assets/img/{tbLineImg.Text}", UriKind.Relative);
-                flowerImg.Source = new BitmapImage(resourceUri);
-                imgMsg.Content = $"sucessfully loaded image: {resourceUri}";
-               
-            }
-            catch (Exception ex)
-            {
-                imgMsg.Content = $"Image loading failed: {ex.Message}";
-
-
-                Uri fallbackUri = new Uri("assets/img/temp.png", UriKind.RelativeOrAbsolute);
-                flowerImg.Source = new BitmapImage(fallbackUri);
-            }
+            
         }
 
         private void flowerImg_LostFocus(object sender, RoutedEventArgs e)
