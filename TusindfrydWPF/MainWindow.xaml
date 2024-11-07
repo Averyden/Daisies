@@ -8,7 +8,7 @@
         Title="MainWindow" Height="250" Width="300">
     <Grid>
         <Label Content="Blomstersorter:&#xD;&#xA;" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Height="29"/>
-        <TextBlock HorizontalAlignment="Left" Margin="45,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="127" Width="204" Background="LightGray"><Run Text="Ingen blomstersorter er til"/><Run Language="da-dk" Text="føjet"/><Run Text="."/></TextBlock>
+        <TextBlock x:Name="sortList" Text="Ingen blomstersorter er tilføjet." HorizontalAlignment="Left" Margin="45,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="127" Width="204" Background="LightGray"></TextBlock>
         <Button x:Name="btnCreateSort" Content="Opret Blomstersort" HorizontalAlignment="Left" Margin="90,180,0,0" VerticalAlignment="Top" Click="btnCreateSort_Click"/>
 
     </Grid>
