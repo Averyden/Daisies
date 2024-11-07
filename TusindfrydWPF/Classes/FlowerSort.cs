@@ -13,5 +13,14 @@ namespace Daisies
         public int ProductionTime { get; set; }
         public int HalfLife { get; set; }
         public int Size { get; set; }
+
+        public FlowerSort(string name, string path, int producTime, int halfLife, int size)
+        {
+            Name = name;
+            PicturePath = path;
+            ProductionTime = producTime;
+            HalfLife = halfLife;
+            Size = size;
+        }
     }
 }
