@@ -24,30 +24,25 @@ namespace TusindfrydWPF
             {
                 btnConfirmFlower.IsEnabled = true;
             }
-        }
 
-        public void updateErrorForInt()
-        {
-            try
-            {
-                int.Parse(tbHalfLife.Text);
-                int.Parse(tbLineProductTime.Text);
-                int.Parse(tbSize.Text);
-            }
-            catch
-            {
-                errorMsg.Content = "Produktionstid, halveringstid, eller størrelse er ikke et heltal.";
+            if (tbHalfLife.Text != "" || tbLineProductTime.Text != "" || tbSize.Text != "") { 
+                try
+                {
+                    int.Parse(tbHalfLife.Text);
+                    int.Parse(tbLineProductTime.Text);
+                    int.Parse(tbSize.Text);
+                }
+                catch {
+                    errorMsg.Content = "Produktionstid, halveringstid, eller størrelse er ikke et heltal.";
+                }
             }
         }
+        
+
 
         private void btnConfirmFlower_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = true;  
-        }
-
-        private void onChangedInt(object sender, TextChangedEventArgs e)
-        {
-            updateErrorForInt();
         }
 
         private void onChanged(object sender, TextChangedEventArgs e)
