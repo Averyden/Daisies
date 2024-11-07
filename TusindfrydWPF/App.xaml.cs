@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace TusindfrydWPF
+namespace Daisies
 {
     /// <summary>
     /// Interaction logic for App.xaml
