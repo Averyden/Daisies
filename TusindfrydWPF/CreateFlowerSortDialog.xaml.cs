@@ -28,37 +28,10 @@ namespace TusindfrydWPF
             } 
         }
 
-        public void updateUI()
+
+
+        public void ShowErrorMessage()
         {
-
-            if (tbLineImg.Text == "")
-            {
-                Uri fallbackUri = new Uri("assets/img/temp.png", UriKind.RelativeOrAbsolute);
-                flowerImg.Source = new BitmapImage(fallbackUri);
-                imgMsg.Content = "";
-            }
-            else
-            { // TODO: figure out how I can make it actually reach the fallback, using File.Exists is gonna rule out absolute paths and doesn't even work in this context with relative paths either.
-                try
-                {
-                    Uri resourceUri = new Uri($"assets/img/{tbLineImg.Text}", UriKind.Relative);
-                    BitmapImage jogn = new BitmapImage(resourceUri);
-                    flowerImg.Source = new BitmapImage(resourceUri);
-                    //imgMsg.Content = $"sucessfully loaded image: {resourceUri}";
-                    imgMsg.Content = jogn.ToString();
-
-                }
-                catch (Exception ex)
-                {
-                    imgMsg.Content = $"Image loading failed: {ex.Message}";
-
-
-                    Uri fallbackUri = new Uri("assets/img/temp.png", UriKind.RelativeOrAbsolute);
-                    flowerImg.Source = new BitmapImage(fallbackUri);
-                }
-            }
-
-
             // This is gonna be clumsy but whatevs, if it works.... it works.
             if (tbHalfLife.Text != "")
             {
@@ -113,7 +86,7 @@ namespace TusindfrydWPF
 
         private void onChanged(object sender, TextChangedEventArgs e)
         {
-            updateUI(); // Split up and remove later.
+            ShowErrorMessage();
             AllFieldsFilled();
 
 
@@ -121,8 +94,16 @@ namespace TusindfrydWPF
 
         private void flowerImg_LostFocus(object sender, RoutedEventArgs e)
         {
-            Uri fallbackUri = new Uri("assets/img/temp.png", UriKind.Relative);
-            flowerImg.Source = new BitmapImage(fallbackUri);
+            try
+            {
+                Uri resourceUri = new Uri($"assets/img/{tbLineImg.Text}", UriKind.Relative);
+                flowerImg.Source = new BitmapImage(resourceUri);
+
+            }
+            catch (Exception ex)
+            {
+                imgMsg.Content = $"Image loading failed: {ex.Message}";
+            }
         }
     }
 }
