@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media.Imaging;
 using Daisies;
+using System.IO;
 
 namespace TusindfrydWPF
 {
@@ -16,42 +17,44 @@ namespace TusindfrydWPF
 
         public void updateOKBtn()
         {
-            if(tbHalfLife.Text == "" || tbLineName.Text == "" || tbLineProductTime.Text == "" || tbSize.Text == "")
+            if (tbHalfLife.Text == "" || tbLineName.Text == "" || tbLineProductTime.Text == "" || tbSize.Text == "")
             {
                 btnConfirmFlower.IsEnabled = false;
-            } else
+            }
+            else
             {
                 btnConfirmFlower.IsEnabled = true;
             }
         }
-        
+
 
 
         private void btnConfirmFlower_Click(object sender, RoutedEventArgs e)
         {
-           
+
         }
 
         private void onChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             updateOKBtn();
 
-            try
+            string imagePath = $"assets/img/{tbLineImg.Text}";
+            Uri resourceUri;
+
+            // Check if the file exists before setting the source
+            if (File.Exists(imagePath))
             {
-                Uri resourceUri = new Uri($"assets/img/{tbLineImg.Text}", UriKind.Relative);
-                flowerImg.Source = new BitmapImage(resourceUri);
-               
+                resourceUri = new Uri(imagePath, UriKind.Relative);
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine("Image loading failed: " + ex.Message);
+                Console.WriteLine("Image file not found, loading fallback.");
+                resourceUri = new Uri("assets/img/temp.png", UriKind.RelativeOrAbsolute);
+            }
 
 
-                Uri fallbackUri = new Uri("assets/img/temp.png", UriKind.RelativeOrAbsolute);
-                flowerImg.Source = new BitmapImage(fallbackUri);
-            }
+            flowerImg.Source = new BitmapImage(resourceUri);
         }
-
         private void flowerImg_LostFocus(object sender, RoutedEventArgs e)
         {
             Uri fallbackUri = new Uri("assets/img/temp.png", UriKind.Relative);
