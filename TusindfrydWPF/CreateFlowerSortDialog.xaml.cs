@@ -17,24 +17,14 @@ namespace TusindfrydWPF
             InitializeComponent();
         }
 
-        public void AllFieldsFilled()
-        {
-            if (!String.IsNullOrEmpty(tbHalfLife.Text)
-                && !String.IsNullOrEmpty(tbLineName.Text)
-                && !String.IsNullOrEmpty(tbLineProductTime.Text)
-                && !String.IsNullOrEmpty(tbSize.Text))
-            {
-                btnConfirmFlower.IsEnabled = true;
-            } 
-        }
 
-
-
-        public void ShowErrorMessage()
+        public void intBoxes_LostFocus(object sender, RoutedEventArgs e)
         {
             // This is gonna be clumsy but whatevs, if it works.... it works.
-            if (tbHalfLife.Text != "")
+            bool valid = true;
+            if (!String.IsNullOrEmpty(tbHalfLife.Text))
             {
+                valid = false;
                 try
                 {
                     int.Parse(tbHalfLife.Text);
@@ -44,8 +34,9 @@ namespace TusindfrydWPF
                     errorMsg.Content = "Halveringstid er ikke sat til et heltal.";
                 }
             }
-            if (tbLineProductTime.Text != "")
+            if (!String.IsNullOrEmpty(tbLineProductTime.Text))
             {
+                valid = false;
                 try
                 {
                     int.Parse(tbLineProductTime.Text);
@@ -55,8 +46,9 @@ namespace TusindfrydWPF
                     errorMsg.Content = "Produktionstid er ikke sat til et heltal.";
                 }
             }
-            if (tbSize.Text != "")
+            if (!String.IsNullOrEmpty(tbSize.Text))
             {
+                valid = false;
                 try
                 {
                     int.Parse(tbSize.Text);
@@ -65,6 +57,10 @@ namespace TusindfrydWPF
                 {
                     errorMsg.Content = "Størrelse er ikke sat til et heltal.";
                 }
+            } 
+            if (valid == true)
+            {
+                errorMsg.Content = string.Empty;
             }
         }
 
@@ -80,19 +76,33 @@ namespace TusindfrydWPF
             flowerSort.Size = int.Parse(tbSize.Text);
 
 
-            
+
             DialogResult = true;
         }
 
-        private void onChanged(object sender, TextChangedEventArgs e)
+        private void onChanged(object sender, TextChangedEventArgs e) // This will change the ok button to toggle between enabled and disabled
         {
-            ShowErrorMessage();
-            AllFieldsFilled();
+            bool filled = false;
+            if (!String.IsNullOrEmpty(tbHalfLife.Text)
+                && !String.IsNullOrEmpty(tbLineName.Text)
+                && !String.IsNullOrEmpty(tbLineProductTime.Text)
+                && !String.IsNullOrEmpty(tbSize.Text))
+            {
+                filled = true;
+            }
 
+            // Allow it to be toggled
+            if (filled)
+            {
+                btnConfirmFlower.IsEnabled = true;
+            } else
+            {
+                btnConfirmFlower.IsEnabled = false;
+            }
 
         }
 
-        private void flowerImg_LostFocus(object sender, RoutedEventArgs e)
+        private void tbLineImg_LostFocus(object sender, RoutedEventArgs e)
         {
             try
             {

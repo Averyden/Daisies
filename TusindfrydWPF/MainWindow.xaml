@@ -8,7 +8,17 @@
         Title="MainWindow" Height="250" Width="300">
     <Grid>
         <Label Content="Blomstersorter:&#xD;&#xA;" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Height="29"/>
-        <TextBlock x:Name="sortList" Text="Ingen blomstersorter er tilføjet." HorizontalAlignment="Left" Margin="45,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="127" Width="204" Background="LightGray"></TextBlock>
+
+        <ListBox x:Name="sortListBox" HorizontalAlignment="Left" ItemsSource="{Binding flowerSorts}" SelectedItem="{Binding SelectedPerson}" Margin="45,45,0,0" Height="130"  VerticalAlignment="Top" Width="210" Background="LightGray">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+      
         <Button x:Name="btnCreateSort" Content="Opret Blomstersort" HorizontalAlignment="Left" Margin="90,180,0,0" VerticalAlignment="Top" Click="btnCreateSort_Click"/>
 
     </Grid>
